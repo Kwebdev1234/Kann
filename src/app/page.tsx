@@ -1,17 +1,18 @@
-
+"use client";
+import { createAuthClient } from "better-auth/react"
 import { Button } from "@/components/ui/button";
-import prisma from "@/lib/db";
+import { authClient } from "@/lib/auth-client";
 
+const Page = () => {
+  const { data } = authClient.useSession();
 
-const Page = async () => {
-  const users = await prisma.user.findMany();
   return (
-    <div className="p-4 font-extrabold">
-      <Button variant="outline">Click here </Button>
-      This is the page component.
-      {JSON.stringify(users)}
-
+    <div className="min-h-screen min-w-screen flex items-center justify-center">
+      {JSON.stringify(data)}
+      {data && (
+        <Button onClick={() => authClient.signOut()}>Logout</Button>)}
     </div>
   )
 }
+
 export default Page;
