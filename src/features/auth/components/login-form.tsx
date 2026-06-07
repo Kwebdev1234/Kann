@@ -19,6 +19,13 @@ const LoginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof LoginSchema>;
 
+/**
+ * Renders the login UI and handles credential submission and third-party sign-in buttons.
+ *
+ * Submits email/password to the authentication client, navigates to `/` and shows a success toast on successful sign-in, and shows an error toast when sign-in fails. While submitting, form inputs and action buttons are disabled.
+ *
+ * @returns The rendered login form React element.
+ */
 export function LoginForm() {
     const router = useRouter();
     const form = useForm<LoginFormValues>({

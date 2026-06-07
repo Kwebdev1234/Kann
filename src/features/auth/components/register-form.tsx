@@ -24,6 +24,13 @@ const RegisterSchema = z.object({
 
 type RegisterFormValues = z.infer<typeof RegisterSchema>;
 
+/**
+ * Render a user registration form with email, password, and confirm-password fields plus Google/GitHub sign-in buttons.
+ *
+ * Submitting the form attempts to create an account via the auth client; on success it navigates to `/` and shows a success toast, and on error it shows an error toast.
+ *
+ * @returns The JSX element for the registration UI.
+ */
 export function RegisterForm() {
     const router = useRouter();
 
