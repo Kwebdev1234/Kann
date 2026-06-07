@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const RegisterSchema = z.object({
     email: z.email("Please enter a valid email address"),
@@ -46,7 +47,7 @@ export function RegisterForm() {
             {
                 onSuccess: () => {
                     router.push("/");
-                    // toast.success("Account created successfully");
+                    toast.success("Account created successfully");
                 },
                 onError: (ctx) => {
                     toast.error(ctx.error.message);
@@ -72,9 +73,11 @@ export function RegisterForm() {
                             <div className="grid gap-6">
                                 <div className="flex flex-col gap-4">
                                     <Button variant="outline" disabled={isPending} className="w-full">
+                                        <Image width={20} height={20} alt="Google Logo" src="/logos/google.svg" />
                                         Continue with Google
                                     </Button>
                                     <Button variant="outline" disabled={isPending} className="w-full">
+                                        <Image width={20} height={20} alt="GitHub Logo" src="/logos/github.svg" />
                                         Continue with GitHub
                                     </Button>
                                 </div>
