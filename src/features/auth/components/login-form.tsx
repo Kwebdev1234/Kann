@@ -8,6 +8,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const LoginSchema = z.object({
     email: z.string().email("Please enter a valid email address"),
@@ -16,7 +19,15 @@ const LoginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof LoginSchema>;
 
+/**
+ * Renders the login UI and handles credential submission and third-party sign-in buttons.
+ *
+ * Submits email/password to the authentication client, navigates to `/` and shows a success toast on successful sign-in, and shows an error toast when sign-in fails. While submitting, form inputs and action buttons are disabled.
+ *
+ * @returns The rendered login form React element.
+ */
 export function LoginForm() {
+    const router = useRouter();
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -25,9 +36,23 @@ export function LoginForm() {
         },
     });
 
-    const onSubmit = async (data: LoginFormValues) => {
-        console.log(data);
-        toast.success("Logged in successfully");
+    const onSubmit = async (values: LoginFormValues) => {
+        await authClient.signIn.email(
+            {
+                email: values.email,
+                password: values.password,
+                callbackURL: "/",
+            },
+            {
+                onSuccess: () => {
+                    router.push("/");
+                    toast.success("Logged in successfully");
+                },
+                onError: (ctx) => {
+                    toast.error(ctx.error.message);
+                }
+            }
+        );
     };
 
     const isPending = form.formState.isSubmitting;
@@ -47,11 +72,15 @@ export function LoginForm() {
                             <div className="grid gap-6">
                                 <div className="flex flex-col gap-4">
                                     <Button variant="outline" disabled={isPending} className="w-full">
+                                        <Image width={20} height={20} alt="Google Logo" src="/logos/google.svg" />
                                         Continue with Google
                                     </Button>
+
                                     <Button variant="outline" disabled={isPending} className="w-full">
+                                        <Image width={20} height={20} alt="GitHub Logo" src="/logos/github.svg" />
                                         Continue with GitHub
                                     </Button>
+
                                 </div>
                                 <FormField
                                     control={form.control}

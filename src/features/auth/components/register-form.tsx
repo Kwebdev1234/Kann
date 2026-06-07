@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const RegisterSchema = z.object({
     email: z.email("Please enter a valid email address"),
@@ -23,6 +24,13 @@ const RegisterSchema = z.object({
 
 type RegisterFormValues = z.infer<typeof RegisterSchema>;
 
+/**
+ * Render a user registration form with email, password, and confirm-password fields plus Google/GitHub sign-in buttons.
+ *
+ * Submitting the form attempts to create an account via the auth client; on success it navigates to `/` and shows a success toast, and on error it shows an error toast.
+ *
+ * @returns The JSX element for the registration UI.
+ */
 export function RegisterForm() {
     const router = useRouter();
 
@@ -46,7 +54,7 @@ export function RegisterForm() {
             {
                 onSuccess: () => {
                     router.push("/");
-                    // toast.success("Account created successfully");
+                    toast.success("Account created successfully");
                 },
                 onError: (ctx) => {
                     toast.error(ctx.error.message);
@@ -72,9 +80,11 @@ export function RegisterForm() {
                             <div className="grid gap-6">
                                 <div className="flex flex-col gap-4">
                                     <Button variant="outline" disabled={isPending} className="w-full">
+                                        <Image width={20} height={20} alt="Google Logo" src="/logos/google.svg" />
                                         Continue with Google
                                     </Button>
                                     <Button variant="outline" disabled={isPending} className="w-full">
+                                        <Image width={20} height={20} alt="GitHub Logo" src="/logos/github.svg" />
                                         Continue with GitHub
                                     </Button>
                                 </div>
