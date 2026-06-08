@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Background subtle texture/gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#f4f5f7"/>
+      <stop offset="100%" stop-color="#e2e5e9"/>
+    </radialGradient>
+
+    <!-- Deep orange to vibrant orange gradient for the K fill -->
+    <linearGradient id="kGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9e4300" />
+      <stop offset="40%" stop-color="#d45d00" />
+      <stop offset="100%" stop-color="#ff983d" />
+    </linearGradient>
+
+    <!-- Glow effect for the automation nodes -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="800" height="500" fill="url(#bgGrad)" />
+
+  <g transform="translate(0, -20)">
+    <!-- THE LETTER K (Base Path with Gradient) -->
+    <path d="M 340,100 L 395,100 L 395,210 L 475,100 L 540,100 L 445,230 L 545,360 L 475,360 L 395,250 L 395,360 L 340,360 Z" 
+          fill="url(#kGrad)" 
+          stroke="#ffaa5e" 
+          stroke-width="2" 
+          stroke-linejoin="round" />
+
+    <!-- AUTOMATION NETWORK (Lines/Web) -->
+    <!-- Vertical stem network -->
+    <line x1="340" y1="100" x2="395" y2="150" stroke="#ffcc99" stroke-width="1.5" opacity="0.7" />
+    <line x1="340" y1="180" x2="395" y2="150" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    <line x1="340" y1="180" x2="395" y2="230" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    <line x1="340" y1="270" x2="395" y2="230" stroke="#ffcc99" stroke-width="1.5" opacity="0.7" />
+    <line x1="340" y1="270" x2="395" y2="310" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    <line x1="340" y1="360" x2="395" y2="310" stroke="#ffcc99" stroke-width="1.5" opacity="0.7" />
+    
+    <!-- Diagonal cross connections (The Mesh) -->
+    <line x1="395" y1="150" x2="445" y2="140" stroke="#ffcc99" stroke-width="1.5" opacity="0.9" />
+    <line x1="395" y1="230" x2="445" y2="140" stroke="#ffcc99" stroke-width="1.5" opacity="0.9" />
+    <line x1="395" y1="230" x2="445" y2="230" stroke="#ffcc99" stroke-width="1.5" opacity="0.9" />
+    <line x1="395" y1="250" x2="445" y2="230" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    <line x1="395" y1="250" x2="475" y2="270" stroke="#ffcc99" stroke-width="1.5" opacity="0.7" />
+    <line x1="395" y1="310" x2="475" y2="360" stroke="#ffcc99" stroke-width="1.5" opacity="0.6" />
+    
+    <!-- Upper wing network -->
+    <line x1="475" y1="100" x2="445" y2="140" stroke="#ffcc99" stroke-width="1.5" opacity="0.7" />
+    <line x1="540" y1="100" x2="445" y2="140" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    <line x1="540" y1="100" x2="490" y2="170" stroke="#ffcc99" stroke-width="1.5" opacity="0.6" />
+    <line x1="445" y1="230" x2="490" y2="170" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    
+    <!-- Lower wing network -->
+    <line x1="445" y1="230" x2="495" y2="295" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+    <line x1="545" y1="360" x2="495" y2="295" stroke="#ffcc99" stroke-width="1.5" opacity="0.7" />
+    <line x1="475" y1="360" x2="495" y2="295" stroke="#ffcc99" stroke-width="1.5" opacity="0.8" />
+
+    <!-- INTEGRATED NODES (Data Points) -->
+    <!-- Outer structural nodes -->
+    <circle cx="340" cy="100" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="340" cy="180" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="340" cy="270" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="340" cy="360" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="475" cy="100" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="540" cy="100" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="545" cy="360" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    <circle cx="475" cy="360" r="5" fill="#fff" stroke="#ff983d" stroke-width="2" filter="url(#glow)" />
+    
+    <!-- Inner intersection/hub nodes -->
+    <circle cx="395" cy="150" r="6" fill="#fff" stroke="#ffae00" stroke-width="2" filter="url(#glow)" />
+    <circle cx="395" cy="230" r="6" fill="#fff" stroke="#ffae00" stroke-width="2" filter="url(#glow)" />
+    <circle cx="395" cy="310" r="6" fill="#fff" stroke="#ffae00" stroke-width="2" filter="url(#glow)" />
+    <circle cx="445" cy="140" r="6" fill="#fff" stroke="#ffae00" stroke-width="2" filter="url(#glow)" />
+    <circle cx="490" cy="170" r="5" fill="#fff" stroke="#ffae00" stroke-width="2" filter="url(#glow)" />
+    <circle cx="445" cy="230" r="7" fill="#let" stroke="#ff6a00" stroke-width="2.5" filter="url(#glow)" />
+    <circle cx="495" cy="295" r="5" fill="#fff" stroke="#ffae00" stroke-width="2" filter="url(#glow)" />
+  </g>
+
+  <!-- TYPOGRAPHY (Kann) -->
+  <text x="400" y="440" 
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-size="64" 
+        font-weight="800" 
+        fill="#d45d00" 
+        text-anchor="middle" 
+        letter-spacing="0.5">Kann</text>
+</svg>
