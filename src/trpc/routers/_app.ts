@@ -4,7 +4,9 @@ import prisma from '@/lib/db';
 import {  baseProcedure, createTRPCRouter, protectedProcedure } from '../init';
 import {google} from '@ai-sdk/google';
 import {generateText} from 'ai';
+import { workflowsRouter } from '@/features/workflows/server/routers';
 export const appRouter = createTRPCRouter({
+  workflows:workflowsRouter,
   testAi:baseProcedure.mutation(async() => {
     await inngest.send({
       name: "execute/ai",
