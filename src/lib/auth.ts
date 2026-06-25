@@ -8,6 +8,11 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma,{
     provider:"postgresql",
   }),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://chaos-elude-kilowatt.ngrok-free.dev",
+  ],
+
   emailAndPassword: {
     enabled: true,
     autoSignIn: true,

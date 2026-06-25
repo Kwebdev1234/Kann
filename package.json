@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+     "ngrok:dev":"npx ngrok http --url=chaos-elude-kilowatt.ngrok-free.dev 3000",
     "postinstall": "patch-package && prisma generate"
   },
   "dependencies": {
@@ -14,6 +15,8 @@
     "@better-auth/kysely-adapter": "^1.6.12",
     "@better-auth/utils": "^0.4.1",
     "@hookform/resolvers": "^5.4.0",
+    "@inngest/realtime": "^0.4.7",
+    "@ngrok/ngrok": "^1.7.0",
     "@paralleldrive/cuid2": "^3.3.0",
     "@polar-sh/better-auth": "^1.8.4",
     "@polar-sh/sdk": "^0.47.1",
@@ -32,9 +35,11 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.4.0",
     "embla-carousel-react": "^8.6.0",
-    "inngest": "^4.5.0",
+    "handlebars": "^4.7.9",
+    "inngest": "^3.44.1",
     "input-otp": "^1.4.2",
     "jotai": "^2.20.1",
+    "ky": "^2.0.2",
     "kysely": "0.29.2",
     "lucide-react": "^1.17.0",
     "next": "15.5.4",
@@ -53,6 +58,7 @@
     "sonner": "^2.0.7",
     "superjson": "^2.2.6",
     "tailwind-merge": "^3.6.0",
+    "toposort": "^2.0.2",
     "vaul": "^1.1.2",
     "zod": "^4.4.3"
   },
@@ -62,6 +68,7 @@
     "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/toposort": "^2.0.7",
     "patch-package": "^8.0.1",
     "prisma": "^6.19.3",
     "shadcn": "^4.8.2",

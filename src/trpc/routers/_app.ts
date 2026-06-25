@@ -5,8 +5,10 @@ import {  baseProcedure, createTRPCRouter, protectedProcedure } from '../init';
 import {google} from '@ai-sdk/google';
 import {generateText} from 'ai';
 import { workflowsRouter } from '@/features/workflows/server/routers';
+import { executionsRouter } from '@/features/executions/server/routers';
 export const appRouter = createTRPCRouter({
   workflows:workflowsRouter,
+  executions:executionsRouter,
   testAi:baseProcedure.mutation(async() => {
     await inngest.send({
       name: "execute/ai",
