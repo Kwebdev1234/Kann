@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-     "ngrok:dev":"npx ngrok http --url=chaos-elude-kilowatt.ngrok-free.dev 3000",
+    "ngrok:dev": "npx ngrok http --url=chaos-elude-kilowatt.ngrok-free.dev 3000",
     "postinstall": "patch-package && prisma generate"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.0",
     "@ai-sdk/google": "^3.0.80",
+    "@ai-sdk/openai": "^4.0.0",
     "@base-ui/react": "^1.5.0",
     "@better-auth/core": "^1.6.12",
     "@better-auth/kysely-adapter": "^1.6.12",
