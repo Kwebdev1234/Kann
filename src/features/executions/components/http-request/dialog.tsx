@@ -39,7 +39,8 @@ const formSchema = z.object({
         .regex(/^[A-Za-z_$][A-Za-z0-9_$]*$/, {
             message: "Variable name must start with a letter or underscore and container only letters, numbers, and underscores",
         }),
-    ep: z.string({ message: "Please enter a valid URL" }),
+    ep: z.string()
+        .min(1, { message: "Please enter a valid URL" }),
     method: z.enum(["GET", "POST", "PUT", "PATCH", "DELETE"]),
     body: z
         .string()
@@ -53,9 +54,7 @@ interface Props {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     onSubmit: (values: z.infer<typeof formSchema>) => void;
-    defaultep?: string;
-    defaultMethod?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-    defaultBody?: string;
+    defaultValues?: Partial<HttpRequestFormValues>;
 };
 
 export const HttpRequestDialog = ({
@@ -67,6 +66,7 @@ export const HttpRequestDialog = ({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            variableName: defaultValues.variableName || "",
             ep: defaultValues.ep || "",
             method: defaultValues.method || "GET",
             body: defaultValues.body || "",
@@ -84,6 +84,7 @@ export const HttpRequestDialog = ({
             });
         }
     }, [open, defaultValues, form]);
+
     const watchVariableName = form.watch("variableName") || "myApiCall";
     const watchMethod = form.watch("method");
     const showBodyField = ["POST", "PUT", "PATCH"].includes(watchMethod);
@@ -92,6 +93,7 @@ export const HttpRequestDialog = ({
         onSubmit(values);
         onOpenChange(false);
     };
+
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent>
@@ -161,7 +163,7 @@ export const HttpRequestDialog = ({
                             name="ep"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>URL</FormLabel>
+                                    <FormLabel>ep URL</FormLabel>
                                     <FormControl>
                                         <Input
                                             placeholder="https://api.example.com/users/{{httpResponse.data.id}}"
@@ -207,5 +209,4 @@ export const HttpRequestDialog = ({
             </DialogContent>
         </Dialog>
     );
-
 };

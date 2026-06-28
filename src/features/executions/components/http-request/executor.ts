@@ -32,38 +32,38 @@ export const httpRequestExecutor: NodeExecutor<HttpRequestData> = async ({
     }),
   );
 
-  if (!data.ep) {
-    await publish(
-      httpRequestChannel().status({
-        nodeId,
-        status: "error",
-      }),
-    );
-    throw new NonRetriableError("HTTP Request node: No ep configured");
-  }
-
-  // if (!data.variableName) {
-  //   await publish(
-  //     httpRequestChannel().status({
-  //       nodeId,
-  //       status: "error",
-  //     }),
-  //   );
-  //   throw new NonRetriableError("HTTP Request node: Variable name not configured");
-  // }
-
-  if (!data.method) {
-    await publish(
-      httpRequestChannel().status({
-        nodeId,
-        status: "error",
-      }),
-    );
-    throw new NonRetriableError("HTTP Request node: Method not configured");
-  }
-
   try {
     const result = await step.run("http-request", async () => {
+      if (!data.ep) {
+        await publish(
+          httpRequestChannel().status({
+            nodeId,
+            status: "error",
+          }),
+        );
+        throw new NonRetriableError("HTTP Request node: No ep configured");
+      }
+
+      if (!data.variableName) {
+        await publish(
+          httpRequestChannel().status({
+            nodeId,
+            status: "error",
+          }),
+        );
+        throw new NonRetriableError("HTTP Request node: Variable name not configured");
+      }
+
+      if (!data.method) {
+        await publish(
+          httpRequestChannel().status({
+            nodeId,
+            status: "error",
+          }),
+        );
+        throw new NonRetriableError("HTTP Request node: Method not configured");
+      }
+
       const ep = Handlebars.compile(data.ep)(context);
       const method = data.method;
 
