@@ -15,7 +15,9 @@ const Page = async ({ searchParams }: Props) => {
     await requireAuth();
 
     const params = await credentialsParamsLoader(searchParams);
-    prefetchCredentials(params);
+    await Promise.all([
+        prefetchCredentials(params),
+    ]);
 
     return (
         <CredentialsContainer>

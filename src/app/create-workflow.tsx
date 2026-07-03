@@ -14,22 +14,19 @@ import { Button } from "@/components/ui/button";
  */
 export default function CreateWorkflow() {
     const trpc = useTRPC();
-    const baseOptions = trpc.createWorkflow.mutationOptions();
     const create = useMutation({
-        ...baseOptions,
-        onMutate(variables) {
-            toast("Workflow queued")
-            return baseOptions.onMutate?.(variables)
+        ...trpc.createWorkflow.mutationOptions(),
+        onMutate: () => {
+            toast("Workflow queued");
+            return undefined;
         },
-        onSuccess(data, variables, context) {
-            toast.success("Workflow completed Successfully")
-            return baseOptions.onSuccess?.(data, variables, context)
+        onSuccess: () => {
+            toast.success("Workflow completed Successfully");
         },
-        onError(error, variables, context) {
-            toast.error(error?.message ?? "Workflow failed")
-            return baseOptions.onError?.(error, variables, context)
+        onError: (error) => {
+            toast.error(error?.message ?? "Workflow failed");
         },
-    })
+    });
 
     return (
         <Button disabled={Boolean(create.isPending)} onClick={() => create.mutate()}>

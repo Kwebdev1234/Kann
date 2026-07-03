@@ -17,7 +17,7 @@ import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
 import { useRouter } from "next/navigation";
 import { useWorkflowsParams } from "../hooks/use-workflows-params";
 import { useEntitySearch } from "@/hooks/use-entity-search";
-import type { Workflow } from "@prisma/client";
+import type { Workflow as PrismaWorkflow } from "@/generated/prisma";
 import { WorkflowIcon } from "lucide-react";
 
 export const WorkflowsSearch = () => {
@@ -38,7 +38,7 @@ export const WorkflowsSearch = () => {
 
 export const WorkflowsList = () => {
     const [params] = useWorkflowsParams();
-    const workflows = useSuspenseWorkflows(params);
+    const workflows = useSuspenseWorkflows();
 
     return (
         <EntityList
@@ -83,7 +83,7 @@ export const WorkflowsHeader = ({ disabled }: { disabled?: boolean }) => {
 
 export const WorkflowsPagination = () => {
     const [params, setParams] = useWorkflowsParams();
-    const workflows = useSuspenseWorkflows(params);
+    const workflows = useSuspenseWorkflows();
 
     return (
         <EntityPagination
@@ -149,7 +149,7 @@ export const WorkflowsEmpty = () => {
 export const WorkflowItem = ({
     data,
 }: {
-    data: Workflow
+    data: PrismaWorkflow
 }) => {
     const removeWorkflow = useRemoveWorkflow();
 

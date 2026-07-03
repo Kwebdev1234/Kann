@@ -1,36 +1,268 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Kann – AI Workflow Automation Platform
 
-## Getting Started
+> Build AI-powered workflows visually using drag-and-drop automation.
 
-First, run the development server:
+Kann is a modern workflow automation platform inspired by tools like Zapier and n8n. It allows users to visually build workflows that react to events, execute AI tasks, make HTTP requests, and automate repetitive business processes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The project was built to demonstrate production-ready full-stack engineering SaaS using Next.js 15, React 19, Better Auth, Prisma, PostgreSQL, Inngest, and modern AI SDKs.
+
+---
+
+# ✨ Features
+
+## Authentication
+
+- Email & Password Authentication
+- GitHub OAuth
+- Google OAuth
+- Secure session management using Better Auth
+- OAuth account linking
+- Protected routes
+
+---
+
+## Visual Workflow Builder
+
+- Drag & Drop workflow editor
+- React Flow powered canvas
+- Persistent workflow storage
+- Auto-saving workflows
+- Workflow execution history
+
+---
+
+## AI Nodes
+
+Generate AI responses using multiple providers.
+
+Supported providers:
+
+- OpenAI
+- Gemini
+- Anthropic Claude
+
+Switch AI providers without changing workflow logic.
+
+---
+
+## Triggers
+
+Current supported triggers:
+
+- Manual Trigger
+- Form Submission Trigger
+- Stripe Webhook Trigger
+
+---
+
+## Actions
+
+- HTTP Request
+- Generate Text (OpenAI)
+- Generate Text (Gemini)
+- Generate Text (Anthropic)
+
+---
+
+## Billing
+
+Integrated with Polar.
+
+Features include:
+
+- Customer creation
+- Subscription management
+- Billing Portal
+- Premium feature upgrading
+
+---
+
+## Production Features
+
+- Error Boundaries
+- Suspense Loading
+- Route Prefetching
+- React Query Caching
+- Server Components
+- Optimistic UI
+- Type-safe APIs with tRPC
+- Runtime validation using Zod
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- React Flow
+- React Hook Form
+- TanStack Query
+- Shadcn UI
+
+## Backend
+
+- tRPC
+- Better Auth
+- Prisma ORM
+- PostgreSQL
+- Inngest
+
+## AI
+
+- OpenAI
+- Gemini
+- Anthropic
+
+## Integrations
+
+- Stripe Webhooks
+- Polar Billing
+- Sentry
+
+---
+
+# 🏗 Architecture
+
+```
+User
+
+   │
+
+   ▼
+
+Next.js App Router
+
+   │
+
+   ▼
+
+tRPC API Layer
+
+   │
+
+   ▼
+
+Workflow Engine
+
+   │
+
+   ├── AI Providers
+   │
+   ├── HTTP Requests
+   │
+   ├── Stripe Webhooks
+   │
+   └── Inngest Background Jobs
+
+   │
+
+   ▼
+
+PostgreSQL
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# ⚡ Engineering Challenges Solved
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+During development I encountered and solved several production-level engineering problems including:
 
-## Learn More
+- OAuth authentication race conditions
+- Session synchronization issues
+- Billing synchronization with Polar
+- Route loading optimization
+- React Query caching strategies
+- Long-running background execution handling
+- Error recovery for failed workflow executions
 
-To learn more about Next.js, take a look at the following resources:
+These challenges and their solutions are documented in the accompanying CASE_STUDY.md.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 🚀 Local Setup
 
-## Deploy on Vercel
+```bash
+git clone <repo>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run dev
+```
+
+Configure:
+
+```
+DATABASE_URL
+
+BETTER_AUTH_SECRET
+
+BETTER_AUTH_URL
+
+GITHUB_CLIENT_ID
+
+GITHUB_CLIENT_SECRET
+
+GOOGLE_CLIENT_ID
+
+GOOGLE_CLIENT_SECRET
+
+OPENAI_API_KEY
+
+GOOGLE_GENERATIVE_AI_API_KEY
+
+ANTHROPIC_API_KEY
+
+POLAR_ACCESS_TOKEN
+
+STRIPE_SECRET_KEY
+```
+
+Run Prisma
+
+```bash
+npx prisma generate
+
+npx prisma db push
+```
+
+---
+
+# 📸 Screenshots
+
+- Login
+- Dashboard
+- Workflow Builder
+- Workflow Execution
+- Credentials
+- Billing
+
+---
+
+# 📚 Future Roadmap
+
+Planned improvements include:
+
+- Gmail Trigger
+- Slack Integration
+- Discord Integration
+- Scheduled (Cron) Workflows
+- Email Actions
+- WhatsApp Actions
+- Retry Policies
+- Parallel Execution
+- Conditional Branching
+- Workflow Templates
+
+---
+
+# 👨‍💻 About
+
+Built by **Kulbhushan Sharma**
+
+Frontend Architect • React Expert • AI Automation • Full Stack Engineering
+
+If you found this project interesting, feel free to connect or provide feedback.
