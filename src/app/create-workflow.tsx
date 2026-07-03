@@ -17,17 +17,17 @@ export default function CreateWorkflow() {
     const baseOptions = trpc.createWorkflow.mutationOptions();
     const create = useMutation({
         ...baseOptions,
-        onMutate(variables) {
+        onMutate(variables, context) {
             toast("Workflow queued")
-            return baseOptions.onMutate?.(variables)
+            return baseOptions.onMutate?.(variables, context)
         },
-        onSuccess(data, variables, context) {
+        onSuccess(data, variables, onMutationResult, context) {
             toast.success("Workflow completed Successfully")
-            return baseOptions.onSuccess?.(data, variables, context)
+            return baseOptions.onSuccess?.(data, variables, onMutationResult, context)
         },
-        onError(error, variables, context) {
+        onError(error, variables, onMutationResult, context) {
             toast.error(error?.message ?? "Workflow failed")
-            return baseOptions.onError?.(error, variables, context)
+            return baseOptions.onError?.(error, variables, onMutationResult, context)
         },
     })
 

@@ -1,5 +1,5 @@
 import {inngest} from '@/inngest/client';
-import {executeAI} from '@/inngest/functions';
+import {executeWorkflow} from '@/inngest/functions';
 import prisma from '@/lib/db';
 import {  baseProcedure, createTRPCRouter, protectedProcedure } from '../init';
 import {google} from '@ai-sdk/google';
@@ -11,7 +11,7 @@ export const appRouter = createTRPCRouter({
   workflows:workflowsRouter,
   executions:executionsRouter,
   credentials:credentialsRouter,
-  testAi:baseProcedure.mutation(async() => {
+  testWorkflow:baseProcedure.mutation(async() => {
     await inngest.send({
       name: "execute/ai",
     });
@@ -21,7 +21,7 @@ export const appRouter = createTRPCRouter({
       return prisma.workflow.findMany();
         
     }),
-    createWorkflow: protectedProcedure.mutation(async() => {
+    createWorkflow: protectedProcedure.mutation(async({ctx}) => {
        await inngest.send({
         name: "app/task.created",
         data: {
@@ -31,6 +31,7 @@ export const appRouter = createTRPCRouter({
       return prisma.workflow.create({
         data: {
           name: "New Workflow",
+          userId: ctx.auth.user.id,
         }
       });
     })
