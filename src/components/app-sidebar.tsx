@@ -7,6 +7,10 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { authClient } from "@/lib/auth-client";
 import { useHasActiveSubscription } from "@/features/subscriptions/use-subscription";
 
+type AppSidebarProps = {
+    onNavigate?: (href: string) => void;
+};
+
 const menuItems = [
     {
         title: "Main",
@@ -30,11 +34,14 @@ const menuItems = [
     }
 ]
 
-export const AppSidebar = () => {
+export const AppSidebar = ({ onNavigate }: AppSidebarProps) => {
     const router = useRouter();
     const pathname = usePathname();
+    const { data: session, isPending } = authClient.useSession();
     const { hasActiveSubscription, isLoading } = useHasActiveSubscription();
+
     return (
+
         <Sidebar collapsible="icon">
             <SidebarHeader>
                 <SidebarMenuItem>
@@ -61,7 +68,15 @@ export const AppSidebar = () => {
                                             asChild
                                             className="gap-x-4 h-10 px-4"
                                         >
-                                            <Link href={item.url} prefetch className="flex items-center gap-2">
+                                            <Link
+                                                href={item.url}
+                                                prefetch
+                                                className="flex items-center gap-2"
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    onNavigate?.(item.url);
+                                                }}
+                                            >
                                                 <item.icon className="size-4" />
                                                 <span>{item.title}</span>
                                             </Link>
@@ -76,7 +91,7 @@ export const AppSidebar = () => {
             <SidebarFooter>
 
                 <SidebarMenu>
-                    {!isLoading && !hasActiveSubscription && (
+                    {hasActiveSubscription === false && (
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 tooltip="Upgade to Pro"

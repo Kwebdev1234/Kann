@@ -1,6 +1,8 @@
 import { AlertTriangleIcon, Loader2Icon, MoreVerticalIcon, PackageOpenIcon, PlusIcon, SearchIcon, TrashIcon } from "lucide-react";
-import { Button } from "./ui/button";
 import Link from "next/link";
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Input } from "./ui/input";
 import {
     Empty,
@@ -45,6 +47,22 @@ export const EntityHeader = ({
     disabled,
     isCreating,
 }: EntityHeaderProps) => {
+    const router = useRouter();
+    const [isNavigating, setIsNavigating] = useState(false);
+
+    const handlePrimaryAction = () => {
+        if (newButtonHref) {
+            setIsNavigating(true);
+            router.prefetch(newButtonHref);
+            router.push(newButtonHref);
+            return;
+        }
+
+        onNew?.();
+    };
+
+    const isBusy = Boolean(isCreating || isNavigating);
+
     return (
         <div className="flex flex-row items-center justify-between gap-x-4">
             <div className="flex flex-col">
@@ -55,25 +73,18 @@ export const EntityHeader = ({
                     </p>
                 )}
             </div>
-            {onNew && !newButtonHref && (
+            {(onNew || newButtonHref) && (
                 <Button
-                    disabled={isCreating || disabled}
+                    disabled={isBusy || disabled}
                     size="sm"
-                    onClick={onNew}
+                    onClick={handlePrimaryAction}
                 >
-                    <PlusIcon className="size-4" />
-                    {newButtonLabel}
-                </Button>
-            )}
-            {newButtonHref && !onNew && (
-                <Button
-                    size="sm"
-                    asChild
-                >
-                    <Link href={newButtonHref} prefetch>
+                    {isBusy ? (
+                        <Loader2Icon className="size-4 animate-spin" style={{ color: "#FFA500" }} />
+                    ) : (
                         <PlusIcon className="size-4" />
-                        {newButtonLabel}
-                    </Link>
+                    )}
+                    {newButtonLabel}
                 </Button>
             )}
         </div>
@@ -180,7 +191,7 @@ export const LoadingView = ({
 }: StateViewProps) => {
     return (
         <div className="flex justify-center items-center h-full flex-1 flex-col gap-y-4">
-            <Loader2Icon className="size-6 animate-spin text-primary" />
+            <Loader2Icon className="size-6 animate-spin" style={{ color: "#FFA500" }} />
             {!!message && (
                 <p className="text-sm text-muted-foreground">
                     {message}
