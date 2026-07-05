@@ -16,8 +16,8 @@ import { useCreateWorkflow, useRemoveWorkflow, useSuspenseWorkflows } from "../h
 import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
 import { useRouter } from "next/navigation";
 import { useWorkflowsParams } from "../hooks/use-workflows-params";
-import { useEntitySearch } from "@/hooks/use-entity-search";
 
+import { useEntitySearch } from "@/hooks/use-entity-search";
 import type { Workflow as PrismaWorkflow } from "@/generated/prisma";
 import { WorkflowIcon } from "lucide-react";
 
