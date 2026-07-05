@@ -42,18 +42,47 @@ export function RegisterForm() {
             confirmPassword: "",
         },
     });
+    // const signInGithub = async () => {
+    //     await authClient.signIn.social({
+    //         provider: "github",
+    //         callbackURL: "/",
+    //     }, {
+    //         onSuccess: () => {
+    //             router.push("/");
+    //         },
+    //         onError: () => {
+    //             toast.error("Something went wrong");
+    //         },
+    //     });
+    // };
 
+    const signInGithub = async () => {
+        await authClient.signIn.social({
+            provider: "github",
+            callbackURL: "/workflows",
+        });
+    };
+    const signInGoogle = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/workflows",
+
+        }, {
+            onError: () => {
+                toast.error("Something went wrong");
+            },
+        });
+    };
     const onSubmit = async (values: RegisterFormValues) => {
         await authClient.signUp.email(
             {
                 name: values.email,
                 email: values.email,
                 password: values.password,
-                callbackURL: "/"
+                callbackURL: "/workflows"
             },
             {
                 onSuccess: () => {
-                    router.push("/");
                     toast.success("Account created successfully");
                 },
                 onError: (ctx) => {
@@ -79,12 +108,35 @@ export function RegisterForm() {
                         <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
                             <div className="grid gap-6">
                                 <div className="flex flex-col gap-4">
-                                    <Button variant="outline" disabled={isPending} className="w-full" type="button">
-                                        <Image width={20} height={20} alt="Google Logo" src="/logos/google.svg" />
+                                    <Button
+                                        variant="outline"
+                                        disabled={isPending}
+                                        className="w-full"
+                                        onClick={signInGoogle}
+                                        type="button"
+                                    >
+                                        <Image
+                                            width={20}
+                                            height={20}
+                                            alt="Google Logo"
+                                            src="/logos/google.svg"
+                                        />
                                         Continue with Google
                                     </Button>
-                                    <Button variant="outline" disabled={isPending} className="w-full" type="button">
-                                        <Image width={20} height={20} alt="GitHub Logo" src="/logos/github.svg" />
+
+                                    <Button
+                                        variant="outline"
+                                        disabled={isPending}
+                                        className="w-full"
+                                        onClick={signInGithub}
+                                        type="button"
+                                    >
+                                        <Image
+                                            width={20}
+                                            height={20}
+                                            alt="GitHub Logo"
+                                            src="/logos/github.svg"
+                                        />
                                         Continue with GitHub
                                     </Button>
                                 </div>
