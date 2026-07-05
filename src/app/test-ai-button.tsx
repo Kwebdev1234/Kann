@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 
 export default function TestAiButton() {
     const trpc = useTRPC();
-    const testAi = useMutation(trpc.testAi.mutationOptions({
+    const testAi = useMutation(trpc.testWorkflow.mutationOptions({
         onSuccess: () => {
             toast.success("AI execution queued successfully!");
         }

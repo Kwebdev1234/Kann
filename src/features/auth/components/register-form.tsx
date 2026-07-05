@@ -108,12 +108,35 @@ export function RegisterForm() {
                         <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
                             <div className="grid gap-6">
                                 <div className="flex flex-col gap-4">
-                                    <Button variant="outline" disabled={isPending} className="w-full" onClick={signInGoogle} type="button">
-                                        <Image width={20} height={20} alt="Google Logo" src="/logos/google.svg" />
+                                    <Button
+                                        variant="outline"
+                                        disabled={isPending}
+                                        className="w-full"
+                                        onClick={signInGoogle}
+                                        type="button"
+                                    >
+                                        <Image
+                                            width={20}
+                                            height={20}
+                                            alt="Google Logo"
+                                            src="/logos/google.svg"
+                                        />
                                         Continue with Google
                                     </Button>
-                                    <Button variant="outline" disabled={isPending} className="w-full" onClick={signInGithub} type="button">
-                                        <Image width={20} height={20} alt="GitHub Logo" src="/logos/github.svg" />
+
+                                    <Button
+                                        variant="outline"
+                                        disabled={isPending}
+                                        className="w-full"
+                                        onClick={signInGithub}
+                                        type="button"
+                                    >
+                                        <Image
+                                            width={20}
+                                            height={20}
+                                            alt="GitHub Logo"
+                                            src="/logos/github.svg"
+                                        />
                                         Continue with GitHub
                                     </Button>
                                 </div>
