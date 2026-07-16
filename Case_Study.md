@@ -5,6 +5,7 @@
 Kann was built as a learning project to understand how modern workflow automation platforms like Zapier and n8n are architected.
 
 Instead of cloning the UI, the goal was to understand the engineering challenges behind authentication, workflow orchestration, AI integrations, asynchronous execution, billing, and production deployment.
+Before Kann, I had extensive frontend experience. Building Kann gave me practical exposure to authentication, event-driven workflows and background processing. It changed how I approach system design by encouraging modularity and clear separation of concerns.
 
 ---
 

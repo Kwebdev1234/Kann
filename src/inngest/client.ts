@@ -6,5 +6,3 @@ export const inngest = new Inngest({
    middleware: [realtimeMiddleware()],
 });
 
-//To run dev
-// npx inngest-cli@latest dev

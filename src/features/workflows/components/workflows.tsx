@@ -21,6 +21,7 @@ import { useEntitySearch } from "@/hooks/use-entity-search";
 import type { Workflow as PrismaWorkflow } from "@/generated/prisma";
 import { WorkflowIcon } from "lucide-react";
 
+
 export const WorkflowsSearch = () => {
     const [params, setParams] = useWorkflowsParams();
     const { searchValue, onSearchChange } = useEntitySearch({
