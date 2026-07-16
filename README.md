@@ -1,6 +1,17 @@
 # 🚀 Kann – AI Workflow Automation Platform
 
 > Build AI-powered workflows visually using drag-and-drop automation.
+> [![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://kann-workflows.vercel.app)
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black)](https://github.com/Kwebdev1234/Kann)
+
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+
+![React](https://img.shields.io/badge/React-19-61DAFB)
+
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+
+![License](https://img.shields.io/badge/License-MIT-green)
 
 Kann is a modern workflow automation platform which explores the architecture behind workflow automation platforms such as Zapier and n8n. It allows users to visually build workflows that react to events, execute AI tasks, make HTTP requests, and automate repetitive business processes.
 
@@ -85,7 +96,7 @@ Features include:
 
 ## 🌐 Live Demo
 
-Coming Soon
+(https://kann-workflows.vercel.app/)
 
 ## 📚 Case Study
 

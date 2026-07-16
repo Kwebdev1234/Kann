@@ -11,6 +11,7 @@ export const auth = betterAuth({
   trustedOrigins: [
     "http://localhost:3000",
     "https://chaos-elude-kilowatt.ngrok-free.dev",
+     "https://kann-workflows.vercel.app",
   ],
 
   emailAndPassword: {
