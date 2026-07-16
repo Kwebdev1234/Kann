@@ -44,7 +44,7 @@ export const executeWorkflow = inngest.createFunction(
     ],
   },
   async ({ event, step, publish }) => {
-    console.log("Executions HST ");
+    
     const inngestEventId = event.id;
     const workflowId = event.data.workflowId;
 

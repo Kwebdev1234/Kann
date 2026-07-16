@@ -18,12 +18,15 @@ export const workflowsRouter = createTRPCRouter({
           userId: ctx.auth.user.id,
         },
       });
+const executionId = await sendWorkflowExecution({
+  workflowId: input.id,
+});
 
-      await sendWorkflowExecution({
-        workflowId: input.id,
-      });
-
-      return workflow;
+return {
+  workflow,
+  executionId,
+};
+      
     }),
   create: premiumProcedure.mutation(({ ctx }) => {
     return prisma.workflow.create({
