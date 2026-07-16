@@ -89,7 +89,7 @@ Coming Soon
 
 ## 📚 Case Study
 
-Read the complete engineering journey in [CASE_STUDY.md](Case_STUDY.md)
+Read the complete engineering journey in [CASE_STUDY.md](Case_Study.md)
 
 ## 💻 Source Code
 
